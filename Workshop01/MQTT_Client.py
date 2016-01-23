@@ -1,16 +1,37 @@
 import paho.mqtt.client as mqtt
 
-def on_connect(client, userdata, flags, rc):
-    print("Connected with Result code " +str(rc))
-    client.subscribe("hello/world")
+# Define Event Callbacks
+
+
+def on_connect(client, userdata, rc):
+    if rc == 0:
+        print("Connected successfully.")
+    else:
+        print("Connection failed. rc = "+str(rc))
+
+
+def on_publish(client, userdata, mid):
+    print("Message "+str(mid)+" published.")
+
+
+def on_subscribe(client, userdata, mid, granted_qos):
+    print("Subscribe with mide "+str(mid)+" recieved.")
+
 
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    print("Message recieved on topic " + msg.topic + " with QoS " + str(msg.qos)
+          + " and payload " + msg.payload)
 
-client = mqtt.Client()
-client.on_connect = on_connect
-client.on_message = on_message
 
-client.connect("localhost", 1833, 60)
+mqttclient = mqtt.Client()
 
-client.loop_forever()
+# Assign event callbacks
+mqttclient.on_connect = on_connect
+mqttclient.on_publish = on_publish
+mqttclient.on_subscribe = on_subscribe
+mqttclient.on_message = on_message
+
+# Establish Connection
+mqtt.connect("localhost", 1883, 60)
+
+mqtt.loop_forever()
