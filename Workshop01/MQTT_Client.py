@@ -19,7 +19,7 @@ def on_subscribe(client, userdata, mid, granted_qos):
 
 
 def on_message(client, userdata, msg):
-    print("Message recieved on topic " + msg.topic + " with QoS " + str(msg.qos)
+    print("Message recieved on topic " + msg.topic
           + " and payload " + msg.payload)
 
 
