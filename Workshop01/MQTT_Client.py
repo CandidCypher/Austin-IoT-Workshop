@@ -32,6 +32,16 @@ mqttclient.on_subscribe = on_subscribe
 mqttclient.on_message = on_message
 
 # Establish Connection
-mqtt.connect("localhost", 1883, 60)
+mqttclient.connect("localhost", 1883, 60)
 
-mqtt.loop_forever()
+# Start Subscription
+mqttclient.subscribe("hello/world")
+
+# Publish a Message
+mqttclient.publish("hello/world", "Hello World Message!")
+
+# Loop; exit on error
+rc = 0
+while rc == 0:
+    rc = mqttclient.loop()
+    print("rc: " + str(rc))
