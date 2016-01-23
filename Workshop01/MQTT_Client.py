@@ -20,7 +20,7 @@ def on_subscribe(client, userdata, mid, granted_qos):
 
 def on_message(client, userdata, msg):
     print("Message recieved on topic " + msg.topic
-          + " and payload " + str.decode(msg.payload))
+          + " and payload " + str.decode('utf-8', msg.payload))
 
 
 mqttclient = mqtt.Client()
