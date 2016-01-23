@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import time
 
 # Define Event Callbacks
 
@@ -19,8 +20,10 @@ def on_subscribe(client, userdata, mid, granted_qos):
 
 
 def on_message(client, userdata, msg):
+    bytesObject = msg.payload
+    messageString = bytesObject.decode('UTF-8')
     print("Message recieved on topic " + msg.topic
-          + " and payload " + str.decode('utf-8', msg.payload))
+          + " and payload " + msg.payload.decode('UTF-8'))
 
 
 mqttclient = mqtt.Client()
@@ -44,4 +47,5 @@ mqttclient.publish("hello/world", "Hello World Message!")
 rc = 0
 while rc == 0:
     rc = mqttclient.loop()
-    print("rc: " + str(rc))
+    mqttclient.publish("hello/world", "This is my message")
+    time.sleep(5)
