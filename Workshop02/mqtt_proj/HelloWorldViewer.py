@@ -50,4 +50,5 @@ class HelloWorldViewer():
     def playback():
         rc = 0
         while rc == 0:
+            self.on_message()
             rc = self.viewer.loop()
