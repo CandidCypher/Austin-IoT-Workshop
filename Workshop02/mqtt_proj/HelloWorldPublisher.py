@@ -27,11 +27,11 @@ class HelloWorldPublish():
         self.publisher = mqtt.Client()
         rc = 0
 
-    def connect(topic="Hello_World", rc):
+    def connect(self, topic="Hello_World", rc):
         self.publisher.connect(self.broker, self.port, self.keepalive)
         print("Connected with result code " + str(rc))
         self.publisher.publish(topic, "Joining system")
 
-    def publish(num_messages=10, message="Hello from publisher"):
+    def publish(self, num_messages=10, message="Hello from publisher"):
         for x in range(num_messages):
             self.publisher.publish(topic, message)

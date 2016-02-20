@@ -36,12 +36,12 @@ class HelloWorldViewer():
         self.keepalive = keepalive
         self.viewer = mqtt.Client()
 
-    def connect(topic="Hello_World", userdata, flags, rc):
+    def connect(self, topic="Hello_World", userdata, flags, rc):
         self.viewer.connect(self.broker, self.port, self.keepalive)
         print("Connected with result code " + str(rc))
         self.viewer.subscribe(topic)
 
-    def on_message(userdata, msg):
+    def on_message(self, userdata, msg):
         bytesObject = msg.payload
         messageString = bytesObject.decode("UTF-8")
         print("Message recieved on topic "+msg.topic
