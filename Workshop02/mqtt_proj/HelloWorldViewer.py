@@ -36,7 +36,7 @@ class HelloWorldViewer():
         self.keepalive = keepalive
         self.viewer = mqtt.Client()
 
-    def connect(self, topic="Hello_World", userdata, flags, rc):
+    def connect(self, userdata, flags, rc, topic="Hello_World"):
         self.viewer.connect(self.broker, self.port, self.keepalive)
         print("Connected with result code " + str(rc))
         self.viewer.subscribe(topic)
