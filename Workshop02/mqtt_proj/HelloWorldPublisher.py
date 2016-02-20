@@ -27,7 +27,7 @@ class HelloWorldPublish():
         self.publisher = mqtt.Client()
         rc = 0
 
-    def connect(self, topic="Hello_World", rc):
+    def connect(self, rc, topic="Hello_World"):
         self.publisher.connect(self.broker, self.port, self.keepalive)
         print("Connected with result code " + str(rc))
         self.publisher.publish(topic, "Joining system")
