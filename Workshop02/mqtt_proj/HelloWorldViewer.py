@@ -38,7 +38,7 @@ class HelloWorldViewer():
 
     def connect(self, topic="Hello_World"):
         self.viewer.connect(self.broker, self.port, self.keepalive)
-        print("Connected with result code " + str(rc))
+        print("Connected with result code" )
         self.viewer.subscribe(topic)
 
     def on_message(self, userdata, msg):
