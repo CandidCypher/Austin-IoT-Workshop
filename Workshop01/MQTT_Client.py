@@ -47,5 +47,5 @@ mqttclient.publish("hello/world", "Hello World Message!")
 rc = 0
 while rc == 0:
     rc = mqttclient.loop()
-    mqttclient.publish("hello/world", "This is my message")
+    mqttclient.publish("hello/world", "This is my message" + str(time.clock()))
     time.sleep(5)

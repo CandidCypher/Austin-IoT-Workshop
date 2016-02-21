@@ -3,7 +3,6 @@
 # vim:fenc=utf-8
 #
 # Copyright © 2016 cameron <www.CandidCypher.com>
-#
 # Distributed under terms of the MIT license.
 
 """
