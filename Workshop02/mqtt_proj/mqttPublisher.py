@@ -2,39 +2,33 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright © 2016 cameron <cowens@austiniot.com>
+# Copyright © 2016 pi <pi@bumblebee>
 #
 # Distributed under terms of the MIT license.
 
 """
-This creates a  class for publishing a specified message to an mqtt topic
+This is a demo mqtt publisher script that publishes messages to
+a specified topic at a specified interval
 """
 
-import time
 import paho.mqtt.client as mqtt
+import time
 
+#Create an instance of an mqtt Client
+publisher = mqtt.Client()
 
-class mqttPublisher():
-    """
-    Basic MQTT Publisher Class
+rc = publisher.connect("localhost", 1883, 60)
+if rc == 0:
+    print("Connection Suscessfull")
+else:
+    print("Connection failed")
 
-    """
+publisher.publish("Hello/World", "Joining dialog")
+print("Joining")
 
-    def __init__(self, broker="localhost", port=1883, keepalive=60):
-        self.publisher = mqtt.Client()
-        self.broker = broker
-        self.port = port
-        self.keepalive = keepalive
-
-    def connect(self):
-        rc = self.publisher.connect(self.broker, self.port, self.keepalive)
-        if rc == 0:
-            print("Connection sucessful")
-        else:
-            print("Connection failed. rc = " + str(rc))
-
-    def publish(self, message="Message", topic="Hello_World",
-                num_msgs = 10, delay = 1):
-        for x in range(num_msgs):
-            time.sleep(delay)
-            self.publisher.publish(topic, message)
+rc = 0
+while rc == 0:
+    rc = publisher.loop()
+    publisher.publish("Hello/World", "Message @" + str(time.ctime()))
+    print("Published message")
+    time.sleep(1)
