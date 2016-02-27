@@ -14,6 +14,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+list_sensors = ["light", "temp"]
 
 @app.route("/")
 def hello():
@@ -21,7 +22,10 @@ def hello():
 
 @app.route("/sensor/<name>")
 def sensor(name):
-    return render_template("sensor.html", name=name)
+    if name in list_sensors:
+        return render_template("sensor.html", name=name)
+    else:
+        return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
