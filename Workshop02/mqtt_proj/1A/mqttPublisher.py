@@ -19,7 +19,7 @@ publisher = mqtt.Client()
 
 rc = publisher.connect("localhost", 1883, 60)
 if rc == 0:
-    print("Connection Suscessfull")
+    print("Connection Successfull")
 else:
     print("Connection failed")
 
