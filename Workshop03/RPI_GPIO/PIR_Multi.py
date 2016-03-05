@@ -15,19 +15,25 @@ import time
 
 io.setmode(io.BCM)
 
-pir_pin = 26
+front_pir = 26
+back_pir = 13
+io.setup(front_pir, io.IN)
+io.setup(back_pir, io.IN)
 
-io.setup(pir_pin, io.IN)
+def front_Motion(PIR_PIN):
+    print("Front Motion Detected @", time.ctime())
 
-def Motion(PIR_PIN):
-    print("Motion Detected @", time.ctime())
+
+def back_Motion(PIR_PIN):
+    print("Back Motion Detected @", time.ctime())
 
 print("Starting Motion Services")
 time.sleep(1)
 print("System is armed")
 
 try:
-    io.add_event_detect(pir_pin, io.RISING, callback=Motion)
+    io.add_event_detect(front_pir, io.RISING, callback=front_Motion)
+    io.add_event_detect(back_pir, io.RISING, callback=back_Motion)
     while 1:
         time.sleep(100)
 
