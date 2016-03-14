@@ -20,4 +20,12 @@ wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh
 
 bash Mini*
 
-sudo apt-get install git mosquitto
+sudo apt-get install git mosquitto mosquitto-clients
+
+conda create --name pyiot ipython flask nose cython pandas ipython flask nose cython pandas scikit-learn setuptools pytest pyzmq requests scipy pip
+
+conda source activate pyiot
+
+pip install paho-mqtt
+
+
