@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+# ! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
@@ -17,7 +17,7 @@ import time
 #Create an instance of an mqtt Client
 publisher = mqtt.Client()
 
-rc = publisher.connect("localhost", 1883, 60)
+rc = publisher.connect("192.168.0.108", 80, 60)
 if rc == 0:
     print("Connection Suscessfull")
 else:
