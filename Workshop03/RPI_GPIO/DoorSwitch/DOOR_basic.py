@@ -16,7 +16,7 @@ import RPi.GPIO as io
 
 io.setmode(io.BCM)
 
-door_pin = 23
+door_pin = 19
 
 io.setup(door_pin, io.IN, pull_up_down=io.PUD_UP)
 # See the guide for more information on Pull up/Pull Down resistors
