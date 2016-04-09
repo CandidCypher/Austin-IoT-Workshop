@@ -21,7 +21,15 @@ door_pin = 19
 io.setup(door_pin, io.IN, pull_up_down=io.PUD_DOWN)
 # See the guide for more information on Pull up/Pull Down resistors
 
-while True:
-    if not io.input(door_pin):
-        print("Door is Open")
-        time.sleep(0.5)
+
+def doorOpen(DOOR_PIN):
+    print("Door Opened @ ", time.ctime())
+
+try:
+    io.add_event_detect(door_pin, io.FALLING, callback=doorOpen)
+    while 1:
+        time.sleep(100)
+
+except KeyboardInterrupt:
+    print("Quitting")
+    io.cleanup()
