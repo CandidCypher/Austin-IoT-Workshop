@@ -18,10 +18,10 @@ io.setmode(io.BCM)
 
 door_pin = 26
 
-io.setup(door_pin, io.IN)
+io.setup(door_pin, io.IN, pull_up_down=io.PUD_DOWN)
 # See the guide for more information on Pull up/Pull Down resistors
 
 while True:
     if not io.input(door_pin):
         print("Door is Open")
-    time.sleep(1.0)
+        time.sleep(0.5)
