@@ -26,7 +26,7 @@ if rc == 0:
     print("Connection Successful")
 else:
     print("Connection Failed!!")
-subscriber.subscribe("PIR_Motion/#")
+subscriber.subscribe("DOOR_Motion/#")
 
 rc = 0
 print("Running")

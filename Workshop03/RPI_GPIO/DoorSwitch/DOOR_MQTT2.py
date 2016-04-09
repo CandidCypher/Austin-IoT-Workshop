@@ -23,10 +23,18 @@ door_pin = 19
 
 io.setup(door_pin, io.IN, pull_up_down=io.PUD_DOWN)
 
+
 def doorOpen(DOOR_PIN):
-    message = "Door Opened @ " + str(time.ctime())
-    print(message)
-    publisher.publish("DOOR_Motion/Front", message)
+    open_message = "Door Opened @ " + str(time.ctime())
+    close_message = "Door Closed @ " +str(time.ctime())
+    state = io.input(DOOR_PIN)
+    if (state == 0):
+        print(open_message)
+        publisher.publish("DOOR_Motion/Front", open_message)
+    elif (state == 1):
+        print(close_message)
+        publisher.publish("DOOR_Motion/Front", close_message)
+
 
 
 ###############################
@@ -56,7 +64,7 @@ rc = 0
 while rc == 0:
     rc = publisher.loop()
     try:
-        io.add_event_detect(door_pin, io.FALLING, callback=doorOpen)
+        io.add_event_detect(door_pin, io.BOTH, callback=doorOpen)
         while 1:
             time.sleep(100)
 
