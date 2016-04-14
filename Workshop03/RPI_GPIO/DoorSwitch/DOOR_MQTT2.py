@@ -50,7 +50,7 @@ publisher = mqtt.Client()
 
 print("Starting Motion Services")
 print("Connecting to motion capture server")
-rc = publisher.connect("localhost", 1883)
+rc = publisher.connect("odin.local", 1883)
 if rc == 0:
     print("Connection Successfull")
 else:

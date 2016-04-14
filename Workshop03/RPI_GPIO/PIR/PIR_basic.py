@@ -23,5 +23,5 @@ io.setup(pir_pin, io.IN)
 while True:
     if io.input(pir_pin):
         print("Motion Detected ", time.ctime())
-        time.sleep(1)
+        time.sleep(0.5)
     time.sleep(0.5)
