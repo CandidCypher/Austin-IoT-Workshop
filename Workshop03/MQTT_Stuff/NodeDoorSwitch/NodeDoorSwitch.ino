@@ -7,7 +7,7 @@
 const char* ssid = "Cybertron";
 const char* password = "Bu22K!ll";
 
-const char* broker = "192.168.0.108";
+const char* broker = "192.168.0.106";
 
 const int door_pin = 15;
 
