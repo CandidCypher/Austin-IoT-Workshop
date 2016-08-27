@@ -1,21 +1,22 @@
-/*
- * Simple MQTT Publisher for the NodeMCU using a Hall Effect Sensor
+/* Simple MQTT Publisher for the NodeMCU using a Hall Effect Sensor
  * to detect when a door is opened.
  */
+ 
 #include "MQTT/MQTT.h"
 
-// This is where we will set up the pub/sub info
-const char* broker = "";
-const char * pubTopic = "/DoorSensors";
-const char * subTopic = "/color";
 
-// Here is where we create the instance of the MQTT client
-MQTT client(broker, 1883, callback);
+char * server =  "10.11.17.140";
+char *pubTopic = "/Doors";
+char *subTopic = "/color";
 
-// Next we declare the pins we will use.
+// Here we will create an instance of a MQTT client
+MQTT client(server, 1883, callback);
+
+
 const int door_pin = 3;
 
-//Next we will declare our functions to be used in main
+
+// Definition of the function to be called when a message is sent to Photon
 
 void callback(char* topic, byte* payload, unsigned int length) {
     char p[length + 1];
@@ -23,13 +24,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
     p[length] = NULL;
     String message(p);
 
-    if (message.equals("RED"))
+    if (message.equals("RED"))    
         RGB.color(255, 0, 0);
-    else if (message.equals("GREEN"))
+    else if (message.equals("GREEN"))    
         RGB.color(0, 255, 0);
-    else if (message.equals("BLUE"))
+    else if (message.equals("BLUE"))    
         RGB.color(0, 0, 255);
-    else
+    else    
         RGB.color(255, 255, 255);
     //delay(1000);
 }
@@ -39,13 +40,13 @@ void setup()
 {
   RGB.control(true);
   // Connection to our Message Broker
-  client.connect("SkyScreamPhoton")
+  client.connect("SkyScreamPhoton");
 
   pinMode(door_pin, INPUT);
 
   if (client.isConnected())
   {
-  client.publish(pubTopic, "Joining System: ")
+  client.publish(pubTopic, "Joining System: ");
   client.subscribe(subTopic);
   }
 }
@@ -70,8 +71,5 @@ void loop()
     RGB.color(0, 0, 255);
   }
 
-  else
-  {
-    digitalWrite(LED, LOW);
-  }
 }
+

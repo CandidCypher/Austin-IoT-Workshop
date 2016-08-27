@@ -17,7 +17,7 @@ import time
 # Create an instance of an mqtt Client
 publisher = mqtt.Client()
 
-rc = publisher.connect("192.168.0.113", 1883, 60)
+rc = publisher.connect("localhost", 1883, 60)
 if rc == 0:
     print("Connection Suscessfull")
 else:
