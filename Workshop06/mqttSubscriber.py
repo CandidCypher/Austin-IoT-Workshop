@@ -26,7 +26,7 @@ if rc == 0:
     print("Connection Successful")
 else:
     print("Connection Failed!!")
-subscriber.subscribe("/helloworld")
+subscriber.subscribe("/Doors")
 
 rc = 0
 print("Running")
